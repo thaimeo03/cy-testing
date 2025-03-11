@@ -47,26 +47,28 @@ describe('Tính năng đăng nhập', () => {
     })
   })
 
-  // it('Kiểm tra email hoặc password không đúng', () => {
-  //   cy.fixture('users/login').then((data) => {
-  //     const cases = data.invalidEmailOrPassword.cases
+  it('Kiểm tra email hoặc password không đúng', () => {
+    cy.fixture('users/login').then((data) => {
+      const cases = data.invalidEmailOrPassword.cases
 
-  //     for (const c of cases) {
-  //       cy.get('bidv-input[formcontrolname=email]').type(c.email)
-  //       cy.get('bidv-input-password[formcontrolname=password]').type(c.password)
+      for (const c of cases) {
+        cy.get('bidv-input[formcontrolname=email]').type(c.email)
+        cy.get('bidv-input-password[formcontrolname=password]').type(c.password)
 
-  //       cy.get('button').first().click()
+        cy.get('button').first().click()
 
-  //       cy.get('bidv-error')
-  //         .find('[automation-id=bidv-error__text]')
-  //         .should('exist') // Kiểm tra xem có tồn tại không trước
-  //         .should('contain', 'Email or password invalid')
+        cy.get('bidv-error')
+          .find('[automation-id=bidv-error__text]')
+          .should('be.visible')
+          .should('contain', 'Email or password invalid')
 
-  //       cy.get('bidv-input[formcontrolname=email]').clear()
-  //       cy.get('bidv-input-password[formcontrolname=password]').clear()
-  //     }
-  //   })
-  // })
+        cy.get('bidv-input[formcontrolname=email]').type('a').clear()
+        cy.get('bidv-input-password[formcontrolname=password]')
+          .type('a')
+          .clear()
+      }
+    })
+  })
 
   it('Kiểm tra email và password đúng', () => {
     cy.fixture('users/login').then((data) => {
