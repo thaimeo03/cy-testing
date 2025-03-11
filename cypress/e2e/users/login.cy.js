@@ -32,4 +32,53 @@ describe('Tính năng đăng nhập', () => {
       }
     })
   })
+
+  it('Kiểm tra password không đúng độ dài', () => {
+    cy.fixture('users/login').then((data) => {
+      const password = data.invalidLengthPassword.password
+
+      cy.get('bidv-input-password[formcontrolname=password]').type(password)
+
+      cy.get('label').first().click()
+
+      cy.get('bidv-error[formcontrolname=password]')
+        .should('be.visible')
+        .should('contain', 'Minimum length — 6')
+    })
+  })
+
+  // it('Kiểm tra email hoặc password không đúng', () => {
+  //   cy.fixture('users/login').then((data) => {
+  //     const cases = data.invalidEmailOrPassword.cases
+
+  //     for (const c of cases) {
+  //       cy.get('bidv-input[formcontrolname=email]').type(c.email)
+  //       cy.get('bidv-input-password[formcontrolname=password]').type(c.password)
+
+  //       cy.get('button').first().click()
+
+  //       cy.get('bidv-error')
+  //         .find('[automation-id=bidv-error__text]')
+  //         .should('exist') // Kiểm tra xem có tồn tại không trước
+  //         .should('contain', 'Email or password invalid')
+
+  //       cy.get('bidv-input[formcontrolname=email]').clear()
+  //       cy.get('bidv-input-password[formcontrolname=password]').clear()
+  //     }
+  //   })
+  // })
+
+  it('Kiểm tra email và password đúng', () => {
+    cy.fixture('users/login').then((data) => {
+      const email = data.validEmailAndPassword.email
+      const password = data.validEmailAndPassword.password
+
+      cy.get('bidv-input[formcontrolname=email]').type(email)
+      cy.get('bidv-input-password[formcontrolname=password]').type(password)
+
+      cy.get('button').first().click()
+
+      cy.url().should('eq', Cypress.config('baseUrl'))
+    })
+  })
 })

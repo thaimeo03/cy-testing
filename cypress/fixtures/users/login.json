@@ -1,5 +1,24 @@
 {
   "invalidEmailFormat": {
     "emails": ["thaimeogmail.com", "thaimeo@gmailcom"]
+  },
+  "invalidLengthPassword": {
+    "password": "12345"
+  },
+  "invalidEmailOrPassword": {
+    "cases": [
+      {
+        "email": "thai@gmail.com",
+        "password": "1234567"
+      },
+      {
+        "email": "thai@gmail.com.vn",
+        "password": "123456"
+      }
+    ]
+  },
+  "validEmailAndPassword": {
+    "email": "orion150703@gmail.com",
+    "password": "123456"
   }
 }
