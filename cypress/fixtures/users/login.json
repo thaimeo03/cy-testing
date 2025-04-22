@@ -20,5 +20,9 @@
   "validEmailAndPassword": {
     "email": "orion150703@gmail.com",
     "password": "123456"
+  },
+  "adminAccount": {
+    "email": "orion150703@gmail.com",
+    "password": "123456"
   }
 }

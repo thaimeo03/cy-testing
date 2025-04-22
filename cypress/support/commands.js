@@ -23,3 +23,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// Login with admin account
+Cypress.Commands.add('adminLogin', () => {
+  cy.visit('/auth/login')
+
+  cy.fixture('users/login').then((data) => {
+    const { email, password } = data.adminAccount
+
+    cy.get('bidv-input[formcontrolname=email]').type(email)
+    cy.get('bidv-input-password[formcontrolname=password]').type(password)
+
+    cy.get('button').first().click()
+
+    cy.url().should('eq', Cypress.config('baseUrl'))
+  })
+})
