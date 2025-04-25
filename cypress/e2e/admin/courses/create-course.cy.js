@@ -91,7 +91,7 @@ describe('Tạo mới khóa học', () => {
     })
 
     it('CKH13: Kiểm tra khi nhập số vào [Giá tiền] textbox', () => {
-      cy.get('bidv-input[formcontrolname="price"]').type(' ')
+      cy.get('bidv-input[formcontrolname="price"]').type('123456789')
       cy.get('button').contains('Tạo mới').click()
       cy.get('bidv-error[formcontrolname="price"]').should('be.empty')
     })
