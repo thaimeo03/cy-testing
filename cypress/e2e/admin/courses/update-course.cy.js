@@ -1,9 +1,9 @@
 describe('(Admin) Cập nhật khóa học', () => {
-  const courseId = '3130031e-67f1-4a53-b28f-50f39efceed5' // Course ID of the course created in the previous test
+  const COURSE_ID = '3130031e-67f1-4a53-b28f-50f39efceed5' // Course ID of the course created in the previous test
 
   beforeEach(() => {
     cy.loginAdmin()
-    cy.visit(`/admin/course/${courseId}/edit?active=0`)
+    cy.visit(`/admin/course/${COURSE_ID}/edit?active=0`)
   })
 
   context('[Tên khoá học] textbox', () => {

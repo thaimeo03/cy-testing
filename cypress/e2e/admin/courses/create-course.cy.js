@@ -233,22 +233,28 @@ describe('(Admin) Tạo mới khóa học', () => {
     cy.fixture('/courses/create-course.json').then((data) => {
       const validCourse = data.validCourse
 
+      // Title
       cy.get('bidv-input[formcontrolname="title"]').type(validCourse.title)
 
+      // Price
       cy.get('bidv-input[formcontrolname="price"]').type(validCourse.price)
 
+      // URL video
       cy.get('bidv-input[formcontrolname="videoUrl"]').type(
         validCourse.videoUrl,
       )
 
+      // Thumbnail
       cy.get('app-single-file-upload')
         .find('input[type="file"]')
         .selectFile('cypress/fixtures/assets/images/less_than_5mb.jpg')
 
+      // Description
       cy.get('app-editor bidv-editor')
         .find('[contenteditable="true"]')
         .type(validCourse.description)
 
+      // Submit
       cy.get('button').contains('Tạo mới').click()
       cy.get('bidv-dialogs').find('button').contains('Xác nhận').click()
 
