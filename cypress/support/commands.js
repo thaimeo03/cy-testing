@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 // Login with admin account
-Cypress.Commands.add('adminLogin', () => {
+Cypress.Commands.add('loginAdmin', () => {
   cy.visit('/auth/login')
 
   cy.fixture('users/login').then((data) => {
