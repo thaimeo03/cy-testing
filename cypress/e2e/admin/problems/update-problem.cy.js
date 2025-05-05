@@ -1,5 +1,5 @@
 describe('(Admin) Cập nhật bài tập', () => {
-  const PROBLEM_ID = '25dcd01a-47d2-4a6e-8289-7b7f36030037'
+  const PROBLEM_ID = 'df8f3b5a-5d96-443b-80ff-c64a3bb1f5ff'
 
   beforeEach(() => {
     cy.loginAdmin()
