@@ -16,7 +16,7 @@ describe('Tính năng đăng nhập', () => {
   })
 
   it('Kiểm tra email không đúng định dạng', () => {
-    cy.fixture('users/login').then((data) => {
+    cy.fixture('auth/login').then((data) => {
       const invalidEmailFormat = data.invalidEmailFormat
 
       for (const email of invalidEmailFormat.emails) {
@@ -34,7 +34,7 @@ describe('Tính năng đăng nhập', () => {
   })
 
   it('Kiểm tra password không đúng độ dài', () => {
-    cy.fixture('users/login').then((data) => {
+    cy.fixture('auth/login').then((data) => {
       const password = data.invalidLengthPassword.password
 
       cy.get('bidv-input-password[formcontrolname=password]').type(password)
@@ -48,7 +48,7 @@ describe('Tính năng đăng nhập', () => {
   })
 
   it('Kiểm tra email hoặc password không đúng', () => {
-    cy.fixture('users/login').then((data) => {
+    cy.fixture('auth/login').then((data) => {
       const cases = data.invalidEmailOrPassword.cases
 
       for (const c of cases) {
@@ -71,7 +71,7 @@ describe('Tính năng đăng nhập', () => {
   })
 
   it('Kiểm tra email và password đúng', () => {
-    cy.fixture('users/login').then((data) => {
+    cy.fixture('auth/login').then((data) => {
       const email = data.validEmailAndPassword.email
       const password = data.validEmailAndPassword.password
 

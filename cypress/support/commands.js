@@ -28,7 +28,7 @@
 Cypress.Commands.add('loginAdmin', () => {
   cy.visit('/auth/login')
 
-  cy.fixture('users/login').then((data) => {
+  cy.fixture('auth/login').then((data) => {
     const { email, password } = data.adminAccount
 
     cy.get('bidv-input[formcontrolname=email]').type(email)
