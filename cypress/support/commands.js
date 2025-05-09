@@ -39,3 +39,20 @@ Cypress.Commands.add('loginAdmin', () => {
     cy.url().should('eq', Cypress.config('baseUrl'))
   })
 })
+
+// Custom command to set content in a CodeMirror editor
+Cypress.Commands.add(
+  'setCodeMirrorContent',
+  (content, selector = '.cm-content') => {
+    cy.get(selector).then(() => {
+      cy.window().then((win) => {
+        // Get the CodeMirror view instance
+        const view = win.document.querySelector(selector).cmView.view
+        // Set editor content by replacing the entire document
+        view.dispatch({
+          changes: { from: 0, to: view.state.doc.length, insert: content },
+        })
+      })
+    })
+  },
+)

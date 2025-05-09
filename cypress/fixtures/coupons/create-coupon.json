@@ -1,0 +1,8 @@
+{
+  "validCoupon": {
+    "type": "Giảm theo phần trăm",
+    "code": "COUPON-TEST-AUTO",
+    "percentOff": 15,
+    "maxRedeem": 30
+  }
+}

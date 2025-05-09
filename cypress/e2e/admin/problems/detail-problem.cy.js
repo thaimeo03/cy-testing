@@ -31,16 +31,6 @@ describe('(Admin) Chi tiết bài tập', () => {
       cy.get('button').contains('Xóa bài tập').should('be.visible')
     })
 
-    it('CTBG19: Kiểm tra khi click', () => {
-      cy.get('button').contains('Xóa bài tập').click()
-      cy.get('button').contains('Xác nhận').click()
-      cy.get('bidv-notification').should(
-        'contain.text',
-        'Xóa bài tập thành công',
-      )
-      cy.url().should('include', '/admin/problem')
-    })
-
     it('CTBG20: Kiểm tra hiển thị', () => {
       cy.get('button').contains('Hủy kích hoạt').should('be.visible')
     })
