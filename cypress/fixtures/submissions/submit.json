@@ -16,7 +16,50 @@
       "infiniteLoop": "let i = 0; while (true) { i++; }; return i;",
       "largeInputData": "const arr = new Array(1000000).fill(1); return arr.reduce((a, b) => a + b, 0);"
     },
-    "logicError": "function threeSumClosest(nums, target) {\n    nums.sort((a, b) => a - b);\n    let sum = nums[0] + nums[1] + nums[2];\n\n    for (let i = 0; i < nums.length - 2; i++) {\n        let l = i + 1, r = nums.length - 1;\n\n        while (l < r) {\n            const curSum = nums[i] + nums[l] + nums[r];\n            if (Math.abs(curSum - target) < Math.abs(sum - target)) {\n                sum = curSum;\n            }\n\n            if (curSum > target) r--;\n            else l++;\n        }\n    }\n\n    return sum;\n}\n",
+    "logicError": "function threeSumClosest(nums, target) {\n    nums.sort((a, b) => a - b);\n    let sum = nums[0] + nums[1] + nums[2];\n\n    for (let i = 0; i < nums.length - 2; i++) {\n        let l = i + 1, r = nums.length - 1;\n\n        while (l < r) {\n            const curSum = nums[i] + nums[l] + nums[r];\n            if (Math.abs(curSum - target) < Math.abs(sum - target)) {\n                sum = curSum;\n            }\n\n            if (curSum > target) r--;\n            else l++;\n        }\n    }\n\n    return sum + 1;\n}\n",
+    "validCode": "function threeSumClosest(nums, target) {\n    nums.sort((a, b) => a - b);\n    let sum = nums[0] + nums[1] + nums[2];\n\n    for (let i = 0; i < nums.length - 2; i++) {\n        let l = i + 1, r = nums.length - 1;\n\n        while (l < r) {\n            const curSum = nums[i] + nums[l] + nums[r];\n            if (Math.abs(curSum - target) < Math.abs(sum - target)) {\n                sum = curSum;\n            }\n\n            if (curSum > target) r--;\n            else l++;\n        }\n    }\n\n    return sum;\n}\n",
     "templateCode": "function threeSumClosest(nums, target) {\n  {{content}}\n};"
+  },
+  "python": {
+    "syntaxErrors": {
+      "missingBracket": "if 2 == 2: return True",
+      "invalidSyntax": "for i in range(10) print(i)",
+      "invalidOperatorUsage": "if 2 = 2: return True",
+      "typeCastingError": "a = 2; b = '3'; return a + b",
+      "undeclaredVariable": "a = 2; b = 3; return a + b + c",
+      "duplicateDeclaration": "a = 2; a = 3; def a(): pass; return a",
+      "wrongTemplate": "def threeSumClosestsss(nums, target):\n            a = 2; b = 3; return a + b\n          "
+    },
+    "runtimeErrors": {
+      "stackOverflow": "def recursive_func(n): return recursive_func(n + 1); return recursive_func(1)",
+      "outOfBounds": "arr = [1, 2, 3]; return arr[10]",
+      "divisionByZero": "a = 10; b = 0; return a / b",
+      "infiniteLoop": "i = 0\nwhile True: i += 1; return i",
+      "largeInputData": "arr = [1] * 1000000; return sum(arr)"
+    },
+    "logicError": "def threeSumClosest(nums, target):\n    nums.sort()\n    result = nums[0] + nums[1] + nums[2]\n\n    for i in range(len(nums) - 2):\n        left = i + 1\n        right = len(nums) - 1\n\n        while left < right:\n            current_sum = nums[i] + nums[left] + nums[right]\n            if abs(current_sum - target) < abs(result - target):\n                result = current_sum\n\n            if current_sum > target:\n                right -= 1\n            else:\n                left += 1\n\n    return result + 1\n",
+    "validCode": "def threeSumClosest(nums, target):\n    nums.sort()\n    result = nums[0] + nums[1] + nums[2]\n\n    for i in range(len(nums) - 2):\n        left = i + 1\n        right = len(nums) - 1\n\n        while left < right:\n            current_sum = nums[i] + nums[left] + nums[right]\n            if abs(current_sum - target) < abs(result - target):\n                result = current_sum\n\n            if current_sum > target:\n                right -= 1\n            else:\n                left += 1\n\n    return result\n",
+    "templateCode": "def threeSumClosest(nums, target):\n  {{content}}\n"
+  },
+  "java": {
+    "syntaxErrors": {
+      "missingBracket": "if(2 == 2 return true;",
+      "invalidSyntax": "for(int i=0; i<10; i++ System.out.println(i);",
+      "invalidOperatorUsage": "if(2 = 2) { return true; } else { return false; }",
+      "typeCastingError": "int a = 2; String b = \"3\"; return a + b;",
+      "undeclaredVariable": "int a = 2; int b = 3; return a + b + c;",
+      "duplicateDeclaration": "int a = 2; int a = 3; return a;",
+      "wrongTemplate": "public int threeSumClosestsss(int[] nums, int target) {\n            int a = 2; int b = 3; return a + b;\n          }"
+    },
+    "runtimeErrors": {
+      "stackOverflow": "return recursiveFunc(1);\nprivate int recursiveFunc(int n) { return recursiveFunc(n + 1); }",
+      "outOfBounds": "int[] arr = {1, 2, 3}; return arr[10];",
+      "divisionByZero": "int a = 10; int b = 0; return a / b;",
+      "infiniteLoop": "int i = 0; while(true) { i++; } return i;",
+      "largeInputData": "int[] arr = new int[1000000]; for(int i=0; i<1000000; i++) arr[i] = 1; int sum = 0; for(int i=0; i<1000000; i++) sum += arr[i]; return sum;"
+    },
+    "logicError": "class Solution {\n    public int threeSumClosest(int[] nums, int target) {\n    Arrays.sort(nums);\n    int result = nums[0] + nums[1] + nums[2];\n\n    for (int i = 0; i < nums.length - 2; i++) {\n        int left = i + 1;\n        int right = nums.length - 1;\n\n        while (left < right) {\n            int currentSum = nums[i] + nums[left] + nums[right];\n            if (Math.abs(currentSum - target) < Math.abs(result - target)) {\n                result = currentSum;\n            }\n\n            if (currentSum > target) {\n                right--;\n            } else {\n                left++;\n            }\n        }\n    }\n\n    return result + 1;\n}\n}",
+    "validCode": "class Solution {\n    public int threeSumClosest(int[] nums, int target) {\n    Arrays.sort(nums);\n    int result = nums[0] + nums[1] + nums[2];\n\n    for (int i = 0; i < nums.length - 2; i++) {\n        int left = i + 1;\n        int right = nums.length - 1;\n\n        while (left < right) {\n            int currentSum = nums[i] + nums[left] + nums[right];\n            if (Math.abs(currentSum - target) < Math.abs(result - target)) {\n                result = currentSum;\n            }\n\n            if (currentSum > target) {\n                right--;\n            } else {\n                left++;\n            }\n        }\n    }\n\n    return result;\n}\n}",
+    "templateCode": "class Solution {\n    public int threeSumClosest(int[] nums, int target) {\n  {{content}}\n}\n}"
   }
 }
