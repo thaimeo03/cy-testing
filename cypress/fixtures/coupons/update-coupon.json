@@ -1,0 +1,14 @@
+{
+  "validCoupon": {
+    "type": "Giảm theo phần trăm",
+    "code": "UPDATED-COUPON-TEST-AUTO",
+    "percentOff": 10,
+    "maxRedeem": 20
+  },
+  "existingCoupon": {
+    "type": "Giảm theo phần trăm",
+    "code": "EXISTING-COUPON-TEST-AUTO",
+    "percentOff": 10,
+    "maxRedeem": 20
+  }
+}
