@@ -15,7 +15,9 @@ describe('(Admin) Tạo mới bài giảng',()=>{
             cy.get('label').contains('Số thứ tự').should('be.visible')
         })
         // it('CBG04: Kiểm tra placeholder [Số thứ tự] textbox', () => {
-            
+        //     cy.get('bidv-input[formcontrolname ="no"]').type('1')
+        //     cy.get('bidv-input[formcontrolname ="no"] input(type = "number")').clear()
+        //     cy.get('bidv-input[formcontrolname ="no"]').find('label').should('contain.text','Nhập số thứ tự')
         // });
 
         it('CBG05:  Kiểm tra tiêu đề [[URL Video] textbox ',()=>{
@@ -137,7 +139,6 @@ describe('(Admin) Tạo mới bài giảng',()=>{
              cy.get('button').contains('Tạo mới').click()
              cy.get('bidv-notification').should('contain.text','Number order lesson already exists')
         })
-        
 
     }) 
 })

@@ -6,256 +6,276 @@ describe('(Admin) Chi tiết bài tập', () => {
     cy.visit(`/admin/problem/${PROBLEM_ID}`)
   })
 
-  // context('Quản lý bài tập', () => {
-  //   it('CTBG12: Kiểm tra hiển thị', () => {
-  //     cy.get('button').contains('Chỉnh sửa bài tập').should('be.visible')
-  //   })
+  context('Quản lý bài tập', () => {
+    it('CTBG12: Kiểm tra hiển thị', () => {
+      cy.get('button').contains('Chỉnh sửa bài tập').should('be.visible')
+    })
 
-  //   it('CTBG13: Kiểm tra khi click', () => {
-  //     cy.get('button').contains('Chỉnh sửa bài tập').click()
-  //     cy.url().should('include', `/admin/problem/${PROBLEM_ID}/edit`)
-  //   })
+    it('CTBG13: Kiểm tra khi click', () => {
+      cy.get('button').contains('Chỉnh sửa bài tập').click()
+      cy.url().should('include', `/admin/problem/${PROBLEM_ID}/edit`)
+    })
 
-  //   it('CTBG14: Kiểm tra hiển thị', () => {
-  //     cy.get('button').contains('Kích hoạt bài tập').should('be.visible')
-  //   })
+    it('CTBG14: Kiểm tra hiển thị', () => {
+      cy.get('button').contains('Kích hoạt bài tập').should('be.visible')
+    })
 
-  //   it('CTBG15: Kiểm tra khi click', () => {
-  //     cy.get('bidv-badge').contains('Chưa kích hoạt').should('be.visible')
-  //     cy.get('button').contains('Kích hoạt bài tập').click()
-  //     cy.get('button').contains('Xác nhận').click()
-  //     cy.get('bidv-badge').contains('Đã kích hoạt').should('be.visible')
-  //   })
+    it('CTBG15: Kiểm tra khi click', () => {
+      // cy.get('bidv-badge').contains('Chưa kích hoạt').should('be.visible')
+      cy.get('bidv-badge').should('contain.text','Chưa kích hoạt')
+      cy.get('button').contains('Kích hoạt bài tập').click()
+      cy.get('button').contains('Xác nhận').click()
+      cy.get('bidv-badge').contains('Đã kích hoạt').should('be.visible')
+    })
 
-  //   it('CTBG18: Kiểm tra hiển thị', () => {
-  //     cy.get('button').contains('Xóa bài tập').should('be.visible')
-  //   })
+    it('CTBG18: Kiểm tra hiển thị', () => {
+      cy.get('button').contains('Xóa bài tập').should('be.visible')
+    })
 
-  //   it('CTBG20: Kiểm tra hiển thị', () => {
-  //     cy.get('button').contains('Hủy kích hoạt').should('be.visible')
-  //   })
+    it('CTBG20: Kiểm tra hiển thị', () => {
+      cy.get('button').contains('Hủy kích hoạt').should('be.visible')
+    })
 
-  //   it('CTBG21: Kiểm tra khi click', () => {
-  //     cy.get('bidv-badge').contains('Đã kích hoạt').should('be.visible')
-  //     cy.get('button').contains('Hủy kích hoạt').click()
-  //     cy.get('button').contains('Xác nhận').click()
-  //     cy.get('bidv-badge').contains('Chưa kích hoạt').should('be.visible')
-  //   })
-  // })
+    it('CTBG21: Kiểm tra khi click', () => {
+      cy.get('bidv-badge').contains('Đã kích hoạt').should('be.visible')
+      cy.get('button').contains('Hủy kích hoạt').click()
+      cy.get('button').contains('Xác nhận').click()
+      cy.get('bidv-badge').contains('Chưa kích hoạt').should('be.visible')
+    })
+  })
 
-  // context('Quản lý template', () => {
-  //   beforeEach(() => {
-  //     cy.get('button').contains('Quản lý template').click()
-  //   })
+  context('Quản lý template', () => {
+    beforeEach(() => {
+      cy.get('button').contains('Quản lý template').click()
+    })
 
-  //   context('Check UI', () => {
-  //     it('CTBG26: Kiểm tra khi chuyển sang chế độ tối ', () => {
-  //       cy.get(
-  //         'input[formcontrolname="darkMode"][data-appearance="default"]',
-  //       ).click()
+    context('Check UI- Update template', () => {
+      // it('CTBG42: Kiểm tra khi chọn ngôn ngữ = java', () => {
+      //   cy.get('bidv-select[formcontrolname="language"]').click()
+      //   cy.get('bidv-data-list')
+      //     .should('be.visible')
+      //     .find('span')
+      //     .filter((index, element) => {
+      //       return element.textContent.trim() === 'Java' // Exact match
+      //     })
+      // })
+      it('CTBG42: Kiểm tra khi chọn ngôn ngữ = Java', () => {
+        cy.get('bidv-select[formcontrolname="language"]').click()
+        cy.get('bidv-data-list')
+        .find('bidv-select-option')
+        .filter((index, element) => {
+        return element.textContent.trim() === 'Java'
+        })
+        .click()
+        cy.get('bidv-select[formcontrolname="language"]')
+        .find('bidv-primitive-textfield input[readonly]')
+        .should('have.value', 'Java')
+      })
+      it('CTB43: Kiểm tra khi chọn ngôn ngữ = Javascript', () => {
+        cy.get('bidv-select[formcontrolname="language"]').click()
+        cy.get('bidv-data-list')
+        .find('bidv-select-option')
+        .filter((index, element) => {
+        return element.textContent.trim() === 'Javascript'
+        })
+        .click()
+        cy.get('bidv-select[formcontrolname="language"]')
+        .find('bidv-primitive-textfield input[readonly]')
+        .should('have.value', 'Javascript')
+      })
+      it('CTB44: Kiểm tra khi chọn ngôn ngữ = Python', () => {
+        cy.get('bidv-select[formcontrolname="language"]').click()
+        cy.get('bidv-data-list')
+        .find('bidv-select-option')
+        .filter((index, element) => {
+        return element.textContent.trim() === 'Python'
+        })
+        .click()
+        cy.get('bidv-select[formcontrolname="language"]')
+        .find('bidv-primitive-textfield input[readonly]')
+        .should('have.value', 'Python')
+      })
+      it('CTBG45: Kiểm tra khi bỏ trống code editor', () => {
+        cy.get('button').contains('Sửa mẫu code').click()
+        cy.setCodeMirrorContent('')
 
-  //       cy.get('.cm-editor').should(
-  //         'have.css',
-  //         'background-color',
-  //         'rgb(40, 44, 52)',
-  //       )
-  //     })
+        cy.get('button').contains('Lưu mẫu code').click()
 
-  //     it('CTBG27: Kiểm tra khi chuyển sang chế độ sáng', () => {
-  //       cy.get('.cm-editor').should(
-  //         'have.css',
-  //         'background-color',
-  //         'rgb(245, 248, 250)',
-  //       )
-  //     })
+        cy.get('bidv-error').should(
+          'contain.text',
+          'Vui lòng nhập đầy đủ thông tin',
+        )
+      })
 
-  //     it('CTBG28: Kiểm tra khi chọn ngôn ngữ = java', () => {
-  //       cy.get('bidv-select[formcontrolname="language"]').click()
-  //       cy.get('bidv-data-list')
-  //         .should('be.visible')
-  //         .find('span')
-  //         .filter((index, element) => {
-  //           return element.textContent.trim() === 'Java' // Exact match
-  //         })
-  //     })
+      it('CTBG46: Kiểm tra khi nhập khoảng trắng vào code editor', () => {
+        cy.get('button').contains('Sửa mẫu code').click()
+        cy.setCodeMirrorContent(' ')
 
-  //     it('CTBG29: Kiểm tra khi chọn ngôn ngữ = javascript', () => {
-  //       cy.get('bidv-select[formcontrolname="language"]').click()
-  //       cy.get('bidv-data-list').should('be.visible').contains('Javascript')
-  //     })
+        cy.get('button').contains('Lưu mẫu code').click()
 
-  //     it('CTBG30: Kiểm tra khi chọn ngôn ngữ = python', () => {
-  //       cy.get('bidv-select[formcontrolname="language"]').click()
-  //       cy.get('bidv-data-list').should('be.visible').contains('Python')
-  //     })
+        cy.get('bidv-error').should(
+          'contain.text',
+          'Vui lòng nhập đầy đủ thông tin',
+        )
+      })
+    })
+    context('Check function - Update template', () => {
+      it('CTBG50: Cập nhật template khi chọn ngôn ngữ = java', () => {
+        cy.get('button').contains('Sửa mẫu code').click()
+        cy.get('bidv-select[formcontrolname="language"]').click()
+        cy.get('bidv-data-list')
+        .find('bidv-select-option')
+        .filter((index, element) => {
+        return element.textContent.trim() === 'Java'
+        })
+        .click()
+        
+        cy.fixture('submissions/submit').then((data) => {
+          const templateCode = data.java.templateCode
+          const code = templateCode.replace('{{content}}', '')
 
-  //     it('CTBG31: Kiểm tra khi bỏ trống code editor', () => {
-  //       cy.setCodeMirrorContent('')
+          cy.setCodeMirrorContent(code)
 
-  //       cy.get('button').contains('Tạo mẫu code').click()
+          cy.get('button').contains('Lưu mẫu code').click()
+          cy.get('bidv-dialogs').find('button').contains('Xác nhận').click()
 
-  //       cy.get('bidv-error').should(
-  //         'contain.text',
-  //         'Vui lòng nhập đầy đủ thông tin',
-  //       )
-  //     })
+          cy.get('bidv-notification').should(
+            'contain.text',
+            'Cập nhật mẫu code thành công',
+          )
+        })
+      })
 
-  //     it('CTBG32: Kiểm tra khi nhập khoảng trắng vào code editor', () => {
-  //       cy.setCodeMirrorContent(' ')
+      it('CTBG51: Cập nhật template khi chọn ngôn ngữ = javascript', () => {
+        cy.get('button').contains('Sửa mẫu code').click()
+        cy.get('bidv-select[formcontrolname="language"]').click()
+        cy.get('bidv-data-list')
+          .should('be.visible')
+          .contains('Javascript')
+          .click()
+        cy.wait(1000)
 
-  //       cy.get('button').contains('Tạo mẫu code').click()
+        cy.fixture('submissions/submit').then((data) => {
+          const templateCode = data.javascript.templateCode
+          const code = templateCode.replace('{{content}}', '')
 
-  //       cy.get('bidv-error').should(
-  //         'contain.text',
-  //         'Vui lòng nhập đầy đủ thông tin',
-  //       )
-  //     })
-  //   })
+          cy.setCodeMirrorContent(code)
 
-  //   context('Check function', () => {
-  //     it('CTBG36: Tạo template khi chọn ngôn ngữ = java', () => {
-  //       cy.get('bidv-select[formcontrolname="language"]').click()
-  //       cy.get('bidv-data-list')
-  //         .should('be.visible')
-  //         .find('span')
-  //         .filter((index, element) => {
-  //           return element.textContent.trim() === 'Java' // Exact match
-  //         })
-  //         .click()
+          cy.get('button').contains('Lưu mẫu code').click()
+          cy.get('bidv-dialogs').find('button').contains('Xác nhận').click()
 
-  //       cy.fixture('submissions/submit').then((data) => {
-  //         const templateCode = data.java.templateCode
-  //         const code = templateCode.replace('{{content}}', '')
+          cy.get('bidv-notification').should(
+            'contain.text',
+            'Cập nhật mẫu code thành công',
+          )
+        })
+      })
 
-  //         cy.setCodeMirrorContent(code)
+      it('CTBG52: Cập nhật template khi chọn ngôn ngữ = python', () => {
+        cy.get('button').contains('Sửa mẫu code').click()
+        cy.get('bidv-select[formcontrolname="language"]').click()
+        cy.get('bidv-data-list').should('be.visible').contains('Python').click()
+        cy.wait(1000)
 
-  //         cy.get('button').contains('Tạo mẫu code').click()
-  //         cy.get('bidv-dialogs').find('button').contains('Xác nhận').click()
+        cy.fixture('submissions/submit').then((data) => {
+          const templateCode = data.python.templateCode
+          const code = templateCode.replace('{{content}}', '')
 
-  //         cy.get('bidv-notification').should(
-  //           'contain.text',
-  //           'Tạo mẫu code thành công',
-  //         )
-  //       })
-  //     })
+          cy.setCodeMirrorContent(code)
 
-  //     it('CTBG37: Tạo template khi chọn ngôn ngữ = javascript', () => {
-  //       cy.get('bidv-select[formcontrolname="language"]').click()
-  //       cy.get('bidv-data-list')
-  //         .should('be.visible')
-  //         .contains('Javascript')
-  //         .click()
-  //       cy.wait(1000)
+          cy.get('button').contains('Lưu mẫu code').click()
+          cy.get('bidv-dialogs').find('button').contains('Xác nhận').click()
 
-  //       cy.fixture('submissions/submit').then((data) => {
-  //         const templateCode = data.javascript.templateCode
-  //         const code = templateCode.replace('{{content}}', '')
-
-  //         cy.setCodeMirrorContent(code)
-
-  //         cy.get('button').contains('Tạo mẫu code').click()
-  //         cy.get('bidv-dialogs').find('button').contains('Xác nhận').click()
-
-  //         cy.get('bidv-notification').should(
-  //           'contain.text',
-  //           'Tạo mẫu code thành công',
-  //         )
-  //       })
-  //     })
-
-  //     it('CTBG38: Tạo template khi chọn ngôn ngữ = python', () => {
-  //       cy.get('bidv-select[formcontrolname="language"]').click()
-  //       cy.get('bidv-data-list').should('be.visible').contains('Python').click()
-  //       cy.wait(1000)
-
-  //       cy.fixture('submissions/submit').then((data) => {
-  //         const templateCode = data.python.templateCode
-  //         const code = templateCode.replace('{{content}}', '')
-
-  //         cy.setCodeMirrorContent(code)
-
-  //         cy.get('button').contains('Tạo mẫu code').click()
-  //         cy.get('bidv-dialogs').find('button').contains('Xác nhận').click()
-
-  //         cy.get('bidv-notification').should(
-  //           'contain.text',
-  //           'Tạo mẫu code thành công',
-  //         )
-  //       })
-  //     })
-
-  //     it('CTBG39: Kiểm tra khi tạo template của ngôn ngữ đã tạo trước đó', () => {
-  //       cy.setCodeMirrorContent(' ')
-
-  //       cy.get('button').contains('Tạo mẫu code').click()
-  //       cy.get('bidv-dialogs').find('button').contains('Xác nhận').click()
-
-  //       cy.get('bidv-notification').should(
-  //         'contain.text',
-  //         'Language already exists with this problem',
-  //       )
-  //     })
-
-  //     it('CTBG40: Xác minh có thể cập nhật thành công', () => {
-  //       cy.get('button').contains('Sửa mẫu code').click()
-
-  //       cy.get('bidv-select[formcontrolname="language"]').click()
-  //       cy.get('bidv-data-list')
-  //         .should('be.visible')
-  //         .contains('Javascript')
-  //         .click()
-  //       cy.wait(1000)
-
-  //       cy.fixture('submissions/submit').then((data) => {
-  //         const templateCode = data.javascript.templateCode
-  //         const code = templateCode.replace('{{content}}', '')
-
-  //         cy.setCodeMirrorContent(code)
-
-  //         cy.get('button').contains('Lưu mẫu code').click()
-  //         cy.get('bidv-dialogs').find('button').contains('Xác nhận').click()
-
-  //         cy.get('bidv-notification').should(
-  //           'contain.text',
-  //           'Cập nhật mẫu code thành công',
-  //         )
-  //       })
-  //     })
-
-  //     it('CTBG41: Xác minh có thể huỷ việc cập nhật thông tin template', () => {
-  //       cy.get('button').contains('Sửa mẫu code').click()
-  //       cy.get('button').contains('Hủy').click()
-
-  //       cy.get('button').contains('Sửa mẫu code').should('be.visible')
-  //     })
-  //   })
-  // })
+          cy.get('bidv-notification').should(
+            'contain.text',
+            'Cập nhật mẫu code thành công',
+          )
+        })
+      })
+    })
+  })
 
   context('Quản lý bộ test', () => {
     beforeEach(() => {
       cy.get('button').contains('Quản lý bộ test').click()
+      cy.get('button').contains('Sửa bộ kiểm thử').click()
     })
 
-    context('Check UI', () => {
-      it('CTBG43: Kiểm tra khi để trống [Tên hàm] textbox', () => {})
+    context('Check UI - Cập nhật testsuit', () => {
+      it('CTBG71: Kiểm tra khi để trống [Tên hàm] textbox', () => {
+        cy.get('bidv-input[formcontrolname="functionName"] input[type=text]').clear()
+        cy.get('button').contains('Cập nhật').click()
+        cy.get('bidv-error[formcontrolname="functionName"]').should('contain.text','Trường này là bắt buộc')
+      })
 
-      it('CTBG44: Kiểm tra khi nhập khoảng trắng vào [Tên hàm] texbox', () => {})
+      it('CTBG72: Kiểm tra khi nhập khoảng trắng vào [Tên hàm] texbox', () => {
+        cy.get('bidv-input[formcontrolname="functionName"] input[type=text]').clear().type(' ')
+        cy.get('button').contains('Cập nhật').click()
+        cy.get('bidv-error[formcontrolname="functionName"]').should('contain.text','Trường này là bắt buộc')
+      })
 
-      it('CTBG45: Kiểm tra khi nhập kí tự đặc biệt vào [Tên hàm] textbox', () => {})
+      it('CTBG73: Kiểm tra khi nhập kí tự đặc biệt vào [Tên hàm] textbox', () => {
+        cy.get('bidv-input[formcontrolname="functionName"] input[type=text]').clear().type('@#$%^&')
+        cy.get('button').contains('Cập nhật').click()
+        cy.get('bidv-notification').should('contain.text','Cập nhật bộ kiểm thử thành công')
+      })
 
-      it('CTBG46: Kiểm tra khi nhập số vào [Tên hàm] textbox', () => {})
+      it('CTBG74: Kiểm tra khi nhập số vào [Tên hàm] textbox', () => {
+        cy.get('bidv-input[formcontrolname="functionName"] input[type=text]').clear().type('12345678')
+        cy.get('button').contains('Cập nhật').click()
+        cy.get('bidv-notification').should('contain.text','Cập nhật bộ kiểm thử thành công')
+      })
 
-      it('CTBG47: Kiểm tra khi nhập 99 kí tự vào [Tên hàm] textbox', () => {})
+      it('CTBG75: Kiểm tra khi nhập 99 kí tự vào [Tên hàm] textbox', () => {
+        const input = 'a'.repeat(99)
+        cy.get('bidv-input[formcontrolname="functionName"] input[type=text]').clear().type(input)
+        cy.get('button').contains('Cập nhật').click()
+        cy.get('bidv-notification').should('contain.text','Cập nhật bộ kiểm thử thành công')
+      })
 
-      it('CTBG48: Kiểm tra khi nhập 100 kí tự  vào [Tên hàm] textbox', () => {})
+      it('CTBG76: Kiểm tra khi nhập 100 kí tự  vào [Tên hàm] textbox', () => {
+        const input = 'a'.repeat(100)
+        cy.get('bidv-input[formcontrolname="functionName"] input[type=text]').clear().type(input)
+        cy.get('button').contains('Cập nhật').click()
+        cy.get('bidv-notification').should('contain.text','Cập nhật bộ kiểm thử thành công')
+      })
 
-      it('CTBG49: Kiểm tra khi nhập 101 kí tự vào [Tên hàm] textbox', () => {})
-
-      it('CTBG50: Kiểm tra khi để trống  [Kiểu dữ liệu đầu vào] selectbox', () => {})
-
-      it('CTBG55: Kiểm tra khi click  [Thêm kiểu dữ liệu] button', () => {})
+      it('CTBG77: Kiểm tra khi nhập 101 kí tự vào [Tên hàm] textbox', () => {
+        const input = 'a'.repeat(101)
+        cy.get('bidv-input[formcontrolname="functionName"] input[type=text]').clear().type(input)
+        cy.get('button').contains('Cập nhật').click()
+        cy.get('bidv-error[formcontrolname ="functionName"').should('contain.text','Độ dài tối đa — 100')
+      })
+      
+      it('CTBG78: Kiểm tra khi để trống  [Kiểu dữ liệu đầu vào] selectbox', () => {
+        cy.get('[data-index]').then(($rows) => {
+        const currentCount = $rows.length
+        cy.get('button').contains('Thêm kiểu dữ liệu').click()
+        cy.get('button').contains('Cập nhật').click()
+        cy.get(`[data-index="${currentCount}"]`)
+          .find('bidv-error')
+          .should('contain.text', 'Trường này là bắt buộc')
+      })
     })
-
-    // context('Check function', () => {})
+   
+      it('CTBG82: Kiểm tra khi click  [Thêm kiểu dữ liệu] button', () => {
+        cy.get('[data-index]').then(($initialRows) => {
+        const initialCount = $initialRows.length
+        cy.contains('Thêm kiểu dữ liệu').click()
+        cy.get('[data-index]').should('have.length', initialCount + 1)
+      })
+    })
+      it('CTBG83: Kiểm tra khi để trống [Dữ liệu đầu vào (mỗi dòng ứng với một kiểu dữ liệu] textbox ', () => {
+          cy.get('bidv-textarea[formcontrolname="expectedOutputSuit"] textarea').clear()
+          cy.get('button').contains('Cập nhật').click()
+          cy.get('bidv-error[formcontrolname="expectedOutputSuit"]').should('contain.text','Trường này là bắt buộc')
+      })
+      it('CTBG84: Kiểm tra khi nhập khoảng trắng vào [Dữ liệu đầu vào (mỗi dòng ứng với một kiểu dữ liệu] textbox ', () => {
+          cy.get('bidv-textarea[formcontrolname="expectedOutputSuit"] textarea').clear().type(' ')
+          cy.get('button').contains('Cập nhật').click()
+          cy.get('bidv-notification').should('contain.text','Cập nhật bộ kiểm thử thành công')
+      })
+    })   
   })
 })
+

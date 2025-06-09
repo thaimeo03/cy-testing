@@ -75,7 +75,7 @@ describe('(Admin) Tạo mới bài tập', () => {
     it('CBT12: Kiểm tra khi nhập 300 kí tự vào [Tiêu đề bài tập] textbox', () => {
       const chars = 'a'.repeat(300)
 
-      cy.get('bidv-input[formcontrolname="title"]').type(chars)
+      cy.get('bidv-input[formcontrolname="title"] input').type(chars)
       cy.get('button').contains('Tạo mới').click()
       cy.get('bidv-error[formcontrolname="title"]').should('be.empty')
     })
@@ -237,5 +237,6 @@ describe('(Admin) Tạo mới bài tập', () => {
 
       cy.url().should('include', '/admin/problem')
     })
+    
   })
 })

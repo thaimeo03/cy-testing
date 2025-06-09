@@ -80,8 +80,7 @@ describe('(Admin) Tạo mới mã giảm giá', () => {
     it('CCP14: [Loại giảm giá] selectbox - Kiểm tra khi chọn loại giảm giá = "giảm theo phần trăm"', () => {
       cy.get('bidv-select[formcontrolname="type"]').click()
       cy.get('bidv-data-list').contains('Giảm theo phần trăm').click()
-      cy.get('button').contains('Tạo mới').click()
-      cy.get('bidv-error[formcontrolname="type"]').should('be.empty')
+      cy.get('bidv-select[formcontrolname="type"]').find('bidv-primitive-textfield input[readonly]').should('have.value', 'Giảm theo phần trăm')
     })
 
     it('CCP15: [Loại giảm giá] selectbox - Kiểm tra ô [Số tiền giảm giá VND] khi chọn loại giảm giá = "giảm theo phần trăm"', () => {
@@ -96,8 +95,7 @@ describe('(Admin) Tạo mới mã giảm giá', () => {
     it('CCP16: [Loại giảm giá] selectbox - Kiểm tra khi chon giảm giá = "giảm theo số tiền"', () => {
       cy.get('bidv-select[formcontrolname="type"]').click()
       cy.get('bidv-data-list').contains('Giảm theo số tiền').click()
-      cy.get('button').contains('Tạo mới').click()
-      cy.get('bidv-error[formcontrolname="type"]').should('be.empty')
+      cy.get('bidv-select[formcontrolname="type"]').find('bidv-primitive-textfield input[readonly]').should('have.value', 'Giảm theo số tiền')
     })
 
     it('CCP17: [Loại giảm giá] selectbox - Kiểm tra ô [Phần trăm giảm giá %] khi chọn loại giảm giá = "giảm theo số tiền"', () => {

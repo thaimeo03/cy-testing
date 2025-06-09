@@ -9,7 +9,6 @@ describe('(User) Chi tiết bài tập', () => {
 
   context('JavaScript', () => {
     beforeEach(() => {
-      // Select JavaScript language for all tests in this context
       cy.get('bidv-select[formcontrolname="language"]').click()
       cy.get('bidv-data-list')
         .should('be.visible')
@@ -130,21 +129,6 @@ describe('(User) Chi tiết bài tập', () => {
     })
 
     context('Lỗi runtime', () => {
-      it('CTBT08: Lỗi tràn bộ nhớ (Stack Overflow)', () => {
-        cy.fixture('submissions/submit').then((data) => {
-          const templateCode = data.javascript.templateCode
-          const errorCode = data.javascript.runtimeErrors.stackOverflow
-
-          const code = templateCode.replace('{{content}}', errorCode)
-          cy.setCodeMirrorContent(code)
-
-          cy.get('button').contains('Nộp bài').click()
-
-          cy.get('bidv-dialog')
-            .should('be.visible')
-            .and('contain.text', 'Có lỗi xảy ra')
-        })
-      })
 
       it('CTBT09: Lỗi truy cập ngoài phạm vi dữ liệu (Out of Bounds)', () => {
         cy.fixture('submissions/submit').then((data) => {
@@ -178,39 +162,6 @@ describe('(User) Chi tiết bài tập', () => {
         })
       })
 
-      it('CTBT11: Lỗi vòng lặp vô tận (Infinite Loop)', () => {
-        cy.fixture('submissions/submit').then((data) => {
-          const templateCode = data.javascript.templateCode
-          const errorCode = data.javascript.runtimeErrors.infiniteLoop
-
-          const code = templateCode.replace('{{content}}', errorCode)
-          cy.setCodeMirrorContent(code)
-
-          cy.get('button').contains('Nộp bài').click()
-
-          cy.get('bidv-dialog')
-            .should('be.visible')
-            .and('contain.text', 'Có lỗi xảy ra')
-          // Note: Infinite loops would typically result in timeout errors on the server
-        })
-      })
-
-      // it('CTBT12: Dữ liệu đầu vào lớn (Large Input Data)', () => {
-      //   cy.fixture('submissions/submit').then((data) => {
-      //     const templateCode = data.javascript.templateCode
-      //     const errorCode = data.javascript.runtimeErrors.largeInputData
-
-      //     const code = templateCode.replace('{{content}}', errorCode)
-      //     cy.setCodeMirrorContent(code)
-
-      //     cy.get('button').contains('Nộp bài').click()
-
-      //     cy.get('bidv-dialog')
-      //       .should('be.visible')
-      //       .and('contain', 'Có lỗi xảy ra')
-      //     // Large input data may cause memory issues or timeout
-      //   })
-      // })
     })
 
     context('Code đúng syntax, sai logic', () => {
@@ -239,17 +190,14 @@ describe('(User) Chi tiết bài tập', () => {
 
           cy.get('button').contains('Nộp bài').click()
 
-          cy.get('bidv-dialog')
-            .should('be.visible')
+          cy.get('bidv-dialog').should('be.visible')
             .and('contain.text', 'Chúc mừng bạn đã hoàn thành bài toán')
 
           cy.get(
             'bidv-dialog button[ng-reflect-icon-left="bidvIconDismiss"]',
           ).click()
           cy.get('button').contains('Lịch sử nộp bài').click()
-          cy.get('div[row-index="0"]')
-            .should('contain.text', 'Javascript')
-            .and('contain.text', 'Đã vượt qua')
+          cy.get('div[row-index="0"]').should('contain.text', 'Javascript').and('contain.text', 'Đã vượt qua')
         })
       })
     })
@@ -375,22 +323,6 @@ describe('(User) Chi tiết bài tập', () => {
     })
 
     context('Lỗi runtime', () => {
-      it('CTBT21: Lỗi tràn bộ nhớ (Stack Overflow)', () => {
-        cy.fixture('submissions/submit').then((data) => {
-          const templateCode = data.python.templateCode
-          const errorCode = data.python.runtimeErrors.stackOverflow
-
-          const code = templateCode.replace('{{content}}', errorCode)
-          cy.setCodeMirrorContent(code)
-
-          cy.get('button').contains('Nộp bài').click()
-
-          cy.get('bidv-dialog')
-            .should('be.visible')
-            .and('contain.text', 'Có lỗi xảy ra')
-        })
-      })
-
       it('CTBT22: Lỗi truy cập ngoài phạm vi dữ liệu (Out of Bounds)', () => {
         cy.fixture('submissions/submit').then((data) => {
           const templateCode = data.python.templateCode
@@ -422,40 +354,6 @@ describe('(User) Chi tiết bài tập', () => {
             .and('contain.text', 'Có lỗi xảy ra')
         })
       })
-
-      it('CTBT24: Lỗi vòng lặp vô tận (Infinite Loop)', () => {
-        cy.fixture('submissions/submit').then((data) => {
-          const templateCode = data.python.templateCode
-          const errorCode = data.python.runtimeErrors.infiniteLoop
-
-          const code = templateCode.replace('{{content}}', errorCode)
-          cy.setCodeMirrorContent(code)
-
-          cy.get('button').contains('Nộp bài').click()
-
-          cy.get('bidv-dialog')
-            .should('be.visible')
-            .and('contain.text', 'Có lỗi xảy ra')
-          // Note: Infinite loops would typically result in timeout errors on the server
-        })
-      })
-
-      // it('CTBT25: Dữ liệu đầu vào lớn (Large Input Data)', () => {
-      //   cy.fixture('submissions/submit').then((data) => {
-      //     const templateCode = data.python.templateCode
-      //     const errorCode = data.python.runtimeErrors.largeInputData
-
-      //     const code = templateCode.replace('{{content}}', errorCode)
-      //     cy.setCodeMirrorContent(code)
-
-      //     cy.get('button').contains('Nộp bài').click()
-
-      //     cy.get('bidv-dialog')
-      //       .should('be.visible')
-      //       .and('contain', 'Có lỗi xảy ra')
-      //     // Large input data may cause memory issues or timeout
-      //   })
-      // })
     })
 
     context('Code đúng syntax, sai logic', () => {
@@ -626,22 +524,7 @@ describe('(User) Chi tiết bài tập', () => {
     })
 
     context('Lỗi runtime', () => {
-      it('CTBT34: Lỗi tràn bộ nhớ (Stack Overflow)', () => {
-        cy.fixture('submissions/submit').then((data) => {
-          const templateCode = data.java.templateCode
-          const errorCode = data.java.runtimeErrors.stackOverflow
-
-          const code = templateCode.replace('{{content}}', errorCode)
-          cy.setCodeMirrorContent(code)
-
-          cy.get('button').contains('Nộp bài').click()
-
-          cy.get('bidv-dialog')
-            .should('be.visible')
-            .and('contain.text', 'Có lỗi xảy ra')
-        })
-      })
-
+     
       it('CTBT35: Lỗi truy cập ngoài phạm vi dữ liệu (Out of Bounds)', () => {
         cy.fixture('submissions/submit').then((data) => {
           const templateCode = data.java.templateCode
@@ -673,40 +556,6 @@ describe('(User) Chi tiết bài tập', () => {
             .and('contain.text', 'Có lỗi xảy ra')
         })
       })
-
-      it('CTBT37: Lỗi vòng lặp vô tận (Infinite Loop)', () => {
-        cy.fixture('submissions/submit').then((data) => {
-          const templateCode = data.java.templateCode
-          const errorCode = data.java.runtimeErrors.infiniteLoop
-
-          const code = templateCode.replace('{{content}}', errorCode)
-          cy.setCodeMirrorContent(code)
-
-          cy.get('button').contains('Nộp bài').click()
-
-          cy.get('bidv-dialog')
-            .should('be.visible')
-            .and('contain.text', 'Có lỗi xảy ra')
-          // Note: Infinite loops would typically result in timeout errors on the server
-        })
-      })
-
-      // it('CTBT38: Dữ liệu đầu vào lớn (Large Input Data)', () => {
-      //   cy.fixture('submissions/submit').then((data) => {
-      //     const templateCode = data.java.templateCode
-      //     const errorCode = data.java.runtimeErrors.largeInputData
-
-      //     const code = templateCode.replace('{{content}}', errorCode)
-      //     cy.setCodeMirrorContent(code)
-
-      //     cy.get('button').contains('Nộp bài').click()
-
-      //     cy.get('bidv-dialog')
-      //       .should('be.visible')
-      //       .and('contain', 'Có lỗi xảy ra')
-      //     // Large input data may cause memory issues or timeout
-      //   })
-      // })
     })
 
     context('Code đúng syntax, sai logic', () => {

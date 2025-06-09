@@ -119,19 +119,19 @@ describe('(Admin) Tạo mới khóa học', () => {
   })
 
   context('[URL video] textbox', () => {
-    it('CKH17: Kiểm tra hiển thị placeholder trường [URL video]', () => {
+    it('CKH18: Kiểm tra hiển thị placeholder trường [URL video]', () => {
       cy.get('bidv-input[formcontrolname="videoUrl"]').should(
         'contain.text',
         'Nhập URL video khóa học',
       )
     })
 
-    it('CKH18: Kiểm tra khi bỏ trống trường [URL video]', () => {
+    it('CKH19: Kiểm tra khi bỏ trống trường [URL video]', () => {
       cy.get('button').contains('Tạo mới').click()
       cy.get('bidv-error[formcontrolname="videoUrl"]').should('be.empty')
     })
 
-    it('CKH19: Kiểm tra khi nhập khoảng trắng vào [URL video]', () => {
+    it('CKH20: Kiểm tra khi nhập khoảng trắng vào [URL video]', () => {
       cy.get('bidv-input[formcontrolname="videoUrl"]').type(' ')
       cy.get('button').contains('Tạo mới').click()
       cy.get('bidv-error[formcontrolname="videoUrl"]').should('be.empty')

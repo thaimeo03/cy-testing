@@ -9,10 +9,7 @@ describe('(Admin) Cập nhật bài tập', () => {
   context('Check UI', () => {
     it('UDBT02: [Tiêu đề bài tập] textbox - Kiểm tra placeholder', () => {
       cy.get('bidv-input[formcontrolname="title"] input').clear()
-
-      cy.get('bidv-input[formcontrolname="title"]')
-        .find('label')
-        .should('contain.text', 'Nhập tiêu đề')
+      cy.get('bidv-input[formcontrolname="title"]').find('label').should('contain.text', 'Nhập tiêu đề')
     })
 
     it('UDBT03: [Cấp độ] selectbox - Kiểm tra tiêu đề', () => {
@@ -90,8 +87,7 @@ describe('(Admin) Cập nhật bài tập', () => {
     it('UDBT14: Kiểm tra khi nhập kí tự đặc biệt vào [Tiêu đề bài tập] textbox', () => {
       cy.get('bidv-input[formcontrolname="title"] input').clear()
 
-      cy.get('bidv-input[formcontrolname="title"]').type(
-        '@#$%^&*()_+{}:"<>?[];\'\\,./`~',
+      cy.get('bidv-input[formcontrolname="title"]').type('@#$%^&*()_+{}:"<>?[];\'\\,./`~'
       )
       cy.get('button').contains('Cập nhật').click()
       cy.get('bidv-error[formcontrolname="title"]').should('be.empty')

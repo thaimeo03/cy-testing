@@ -1,0 +1,17 @@
+{
+    "fullname":
+        {
+            "invalidLength":["ab","a"],
+            "validLength":["abc","aaaaaa"],
+            "invalidValue": [12345,"!@#$%"],
+            "validValue": ["SFGHA","ạgsdv"]
+        },
+
+    "email":{
+
+        "invalidEmal": ["orion150703@gmail.com","orion150703@gmail.com"],
+        "validEmail" : ["orion150703@gmail.com","orion150703@gmail.com"]
+    
+    }
+}
+

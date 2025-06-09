@@ -41,9 +41,7 @@ Cypress.Commands.add('loginAdmin', () => {
 })
 
 // Custom command to set content in a CodeMirror editor
-Cypress.Commands.add(
-  'setCodeMirrorContent',
-  (content, selector = '.cm-content') => {
+Cypress.Commands.add('setCodeMirrorContent',(content, selector = '.cm-content') => {
     cy.get(selector).then(() => {
       cy.window().then((win) => {
         // Get the CodeMirror view instance
